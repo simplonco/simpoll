@@ -1,0 +1,11 @@
+<h1>Sondages dispo</h1>
+
+<% @poll.each do |p| %>
+<tr>
+  <td><%= p.title %></td>
+  <td><%= p.description %></td>
+  <td><%= p.author %></td>
+  <td><%= p.field %></td>
+</tr>
+<% end %>
+<%= link_to 'New poll', new_poll_path %>
