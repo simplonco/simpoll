@@ -8,9 +8,11 @@ class PollsControllerTest < ActionController::TestCase
   end
 
   test "user is able to post new form" do
-    post :create, Poll: {title: "Titre", author: "Benoit", description: "mon sondage", field: "field"}
-    assert_response :success
+    post :create, poll: {title: "Titre", author: "Benoit", description: "mon sondage", field: "field"}
+    assert_redirected_to new_poll_path
+    assert_equal "Ok; sondage enregistré", flash[:notice]
     assert_equal 1, Poll.count
+    assert_equal "Titre", Poll.first.title
   end
 
 end

@@ -1,4 +1,4 @@
-class PollsController < ActionController::Base
+class PollsController < ApplicationController
   def index
     @poll = Poll.all
   end
@@ -9,8 +9,8 @@ class PollsController < ActionController::Base
 
   def create
     @poll = Poll.new(poll_params)
-
     @poll.save
+    flash[:notice] = "Ok; sondage enregistré"
     redirect_to new_poll_path
   end
 
