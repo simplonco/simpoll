@@ -1,0 +1,2 @@
+Fabricator(:poll) do
+end
