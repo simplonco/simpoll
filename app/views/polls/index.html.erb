@@ -1,9 +1,7 @@
-<% @poll.each do |p| %>
-<tr>
-  <td><%= p.title %></td>
-  <td><%= p.description %></td>
-  <td><%= p.author %></td>
-  <td><%= p.field %></td>
-</tr>
-<% end %>
+<h1>Tous les sondages</h1>
+<ul>
+  <% @polls.each do |p| %>
+    <li><%= link_to poll_title(p), poll_path(p) %></li>
+  <% end %>
+</ul>
 <%= link_to 'New poll', new_poll_path %>
