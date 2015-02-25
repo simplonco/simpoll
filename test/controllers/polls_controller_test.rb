@@ -18,10 +18,10 @@ class PollsControllerTest < ActionController::TestCase
     post :create, poll:
       { title: "Titre",
         author: "Benoit",
-        description: "mon sondage",
-        field: "field" }
-    assert_redirected_to poll_path(Poll.first)
-    assert_equal "Ok, sondage enregistré", flash[:notice]
+        description: "mon sondage"
+       }
+    assert_redirected_to new_poll_question_path(Poll.first)
+    assert_equal "Sondage créé : vous pouvez maintenant créer vos questions.", flash[:notice]
     assert_equal 1, Poll.count
     assert_equal "Titre", Poll.first.title
   end

@@ -8,10 +8,10 @@ class PollsController < ApplicationController
   end
 
   def create
-    @poll = Poll.new(poll_params)
-    @poll.save
-    flash[:notice] = "Ok, sondage enregistré"
-    redirect_to @poll
+    poll = Poll.new(poll_params)
+    poll.save
+    flash[:notice] = "Sondage créé : vous pouvez maintenant créer vos questions."
+    redirect_to new_poll_question_path(poll)
   end
 
   def show

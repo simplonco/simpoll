@@ -1,0 +1,20 @@
+<h1>Nouvelle question</h1>
+
+<%= form_for :question, url: poll_questions_path(@poll) do |f| %>
+<p>
+  <%= f.label :content %><br>
+  <%= f.text_field :content %>
+</p>
+Choix possibles :
+<ul>
+  <%= f.fields_for :choices do |choices_form| %>
+  <li>
+    <%= choices_form.label :value %>
+    <%= choices_form.text_field :value %>
+  </li>
+  <% end %>
+</ul>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
