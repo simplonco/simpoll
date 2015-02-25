@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150224110002) do
   enable_extension "plpgsql"
 
   create_table "choices", force: :cascade do |t|
-    t.integer "questions_id"
+    t.integer "question_id"
     t.string  "value"
   end
 
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150224110002) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "polls_id"
+    t.integer "poll_id"
     t.string  "content"
   end
 

@@ -1,6 +1,6 @@
 <h1>Nouvelle question</h1>
 
-<%= form_for :question, url: poll_questions_path(@poll) do |f| %>
+<%= form_for @question, url: poll_questions_path(@poll) do |f| %>
 <p>
   <%= f.label :content %><br>
   <%= f.text_field :content %>
