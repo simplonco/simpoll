@@ -16,4 +16,8 @@
 	<% end %>
 </ul>
 
-<%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Créer un nouveau sondage", new_poll_path %>
+<ul>
+	<li><%= link_to "Ajouter une question", new_poll_question_path(@poll) %></li>
+	<li><%= link_to "Retour à l'accueil", root_path %></li>
+	<li><%= link_to "Créer un nouveau sondage", new_poll_path %></li>
+</ul>
