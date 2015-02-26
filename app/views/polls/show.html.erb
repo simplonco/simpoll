@@ -1,5 +1,19 @@
 <h1><%= @poll.title %></h1>
 <p><%= @poll.author %></p>
 <p><%= @poll.description %></p>
+<ul>
+	<% @poll.questions.each do |question| %>
+		<li>
+			<%= question.content %>
+			<ul>
+				<% question.choices.each do |choice| %>
+					<li>
+						<%= choice.value %>
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	<% end %>
+</ul>
 
 <%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Créer un nouveau sondage", new_poll_path %>
