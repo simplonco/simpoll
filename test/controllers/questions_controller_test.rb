@@ -2,18 +2,27 @@ require 'test_helper'
 
 class QuestionsControllerTest < ActionController::TestCase
 
+  attr_reader :poll
+
+  def setup
+    @poll = Fabricate(:poll)
+  end
+
   test "new" do
-    poll = Fabricate(:poll)
     get :new, poll_id: poll.id
     assert_response :success
     assert_equal(poll, assigns(:poll))
+    assert_kind_of(Question, assigns(:question))
+    assert_equal(1, assigns(:question).choices.length)
   end
-
+  
+  test "add new choice" do
+    get :new, poll_id: poll.id, number_of_choices: 2
+    assert_equal(2, assigns(:question).choices.length)
+  end
+  
   test "create" do
-    poll = Fabricate(:poll)
-    
     assert_equal(0, poll.questions.length)
-
     post :create, poll_id: poll.id, 
 	question: 
 		{
@@ -22,13 +31,8 @@ class QuestionsControllerTest < ActionController::TestCase
 		}
     
     assert_redirected_to poll_path(poll)
-
     assert_equal(1, poll.reload.questions.length)
-
     assert_equal("blabla", poll.questions.first.content)
     assert_equal(1, poll.questions.first.choices.length)
-
-
   end
-
 end

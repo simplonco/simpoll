@@ -14,6 +14,7 @@ Choix possibles :
   </li>
   <% end %>
 </ul>
+<%= link_to 'Ajouter un choix', new_poll_question_path(@poll, number_of_choices: @question.choices.length + 1) %>
 <p>
   <%= f.submit %>
 </p>
