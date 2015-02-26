@@ -4,7 +4,8 @@
 <ul>
 	<% @poll.questions.each do |question| %>
 		<li>
-			<%= question.content %>
+			<%= question.content %> - 
+			<%= link_to "Supprimer la question", poll_question_path(@poll, question), method: :delete %>
 			<ul>
 				<% question.choices.each do |choice| %>
 					<li>

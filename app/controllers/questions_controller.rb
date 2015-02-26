@@ -1,7 +1,8 @@
 class QuestionsController < ApplicationController
+
+  before_filter :find_poll
   
   def new
-    @poll = Poll.find(params[:poll_id])
     @question = @poll.questions.new
     number_of_choices = params[:number_of_choices]
     number_of_choices ||= 1
@@ -9,13 +10,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-  	poll = Poll.find(params[:poll_id])
-
-  	question = poll.questions.new
+  	question = @poll.questions.new
   	question.update_attributes(question_params)
   	question.save
+  	redirect_to poll_path(@poll)
+  end
 
-  	redirect_to poll_path(poll)
+  def destroy
+    question = @poll.questions.find(params[:id])
+    question.delete
+    redirect_to poll_path(@poll)
   end
 
 	private
@@ -24,6 +28,7 @@ class QuestionsController < ApplicationController
 		params.require(:question).permit(:content, choices_attributes: [:value])
 	end
 
+  def find_poll    
+    @poll = Poll.find(params[:poll_id])
+  end
 end
-
-

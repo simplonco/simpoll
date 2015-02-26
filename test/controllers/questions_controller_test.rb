@@ -35,4 +35,11 @@ class QuestionsControllerTest < ActionController::TestCase
     assert_equal("blabla", poll.questions.first.content)
     assert_equal(1, poll.questions.first.choices.length)
   end
+
+  test "Delete a question" do
+    question = Fabricate(:question, poll: poll)
+    post :destroy, poll_id: poll.id, id: question.id  
+    assert_redirected_to poll_path(poll)
+    assert_equal 0, Question.count
+  end
 end
