@@ -8,6 +8,7 @@ Choix possibles :
   <li>
     <%= choices_form.label :value %>
     <%= choices_form.text_field :value %>
+    <%= choices_form.link_to_remove 'Supprimer ce choix' %>
   </li>
   <% end %>
   <%= f.link_to_add 'Ajouter un choix', :choices %>

@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
 	private
 
 	def question_params
-		params.require(:question).permit(:content, choices_attributes: [:value])
+		params.require(:question).permit(:content, choices_attributes: [:value, :_destroy])
 	end
 
   def find_poll
