@@ -13,6 +13,18 @@ class QuestionsController < ApplicationController
   	redirect_to poll_path(@poll)
   end
 
+  def edit
+    @question = @poll.questions.find(params[:id])
+  end
+
+  def update
+    question = @poll.questions.find(params[:id])
+    question.choices.delete_all
+    question.update_attributes(question_params)
+    question.save
+    redirect_to poll_path(@poll)
+  end
+
   def destroy
     question = @poll.questions.find(params[:id])
     question.delete

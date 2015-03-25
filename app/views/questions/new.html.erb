@@ -1,21 +1,6 @@
-<h1>Nouvelle question</h1>
+<h1>Ajouter une nouvelle question</h1>
 
 <%= nested_form_for @question, url: poll_questions_path(@poll) do |f| %>
-<p>
-  <%= f.label :content %><br>
-  <%= f.text_field :content %>
-</p>
-Choix possibles :
-<ul>
-  <%= f.fields_for :choices do |choices_form| %>
-  <li>
-    <%= choices_form.label :value %>
-    <%= choices_form.text_field :value %>
-  </li>
-  <% end %>
-<%= f.link_to_add 'Ajouter un choix', :choices %>
-</ul>
-<p>
-  <%= f.submit %>
-</p>
+  <%= render('form'), locals: {f: f} %>
+
 <% end %>
