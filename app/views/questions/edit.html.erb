@@ -1,0 +1,7 @@
+<h1>Modifier la question</h1>
+
+<%= nested_form_for @question, url: poll_question_path(@poll, @question) do |f| %>
+
+  <%= render partial: 'form', locals: {f: f} %>
+
+<% end %>

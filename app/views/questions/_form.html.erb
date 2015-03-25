@@ -1,0 +1,18 @@
+<p>
+  <%= f.label :content %><br>
+  <%= f.text_field :content %>
+</p>
+Choix possibles :
+<ul>
+  <%= f.fields_for :choices do |choices_form| %>
+  <li>
+    <%= choices_form.label :value %>
+    <%= choices_form.text_field :value %>
+    <%= choices_form.link_to_remove 'Supprimer ce choix' %>
+  </li>
+  <% end %>
+  <%= f.link_to_add 'Ajouter un choix', :choices %>
+</ul>
+<p>
+  <%= f.submit %>
+</p>
