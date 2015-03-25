@@ -1,12 +1,9 @@
 class QuestionsController < ApplicationController
 
   before_filter :find_poll
-  
+
   def new
     @question = @poll.questions.new
-    number_of_choices = params[:number_of_choices]
-    number_of_choices ||= 1
-    number_of_choices.to_i.times { @question.choices.build }
   end
 
   def create
@@ -28,7 +25,7 @@ class QuestionsController < ApplicationController
 		params.require(:question).permit(:content, choices_attributes: [:value])
 	end
 
-  def find_poll    
+  def find_poll
     @poll = Poll.find(params[:poll_id])
   end
 end
